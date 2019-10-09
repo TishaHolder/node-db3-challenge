@@ -29,5 +29,22 @@ join employees as e
 on o.employeeid = e.employeeid;
 
 ### (Stretch)  Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
+select p.productname, c.categoryname, count(c.categoryid) as [Count]
+from products as p
+join categories as c
+on p.categoryid = c.categoryid
+group by p.categoryid;
 
 ### (Stretch) Display OrderID and a  column called ItemCount that shows the total number of products placed on the order. Shows 196 records. 
+
+--THIS ONE SHOWS THE TOTAL PRODUCT QUANTITY ON EACH ORDER
+select od.orderid, sum(quantity) as [ItemCount]
+from orderdetails as od
+group by od.orderid;
+
+OR
+
+--THIS ONE SHOWS THE NUMBER OF PRODUCT TYPES ON EACH ORDER
+select od.orderid, count(productid) as [ItemCount]
+from orderdetails as od
+group by od.orderid;

@@ -41,7 +41,7 @@ function add(scheme){
     //important for postgres
     .insert(scheme, 'id')
     .then( ([id]) => { //insert returns id of the newly inserted row
-        return findById(id);
+        return findById(id); //must use return to return the newly added record
     })
     .catch(error => {
         console.log("insert error", error);
@@ -53,7 +53,7 @@ function update(changes, id){
     .where('id', id)//where the id in the schemes table is equal to the id that was entered
     .update(changes)
     .then( count => {
-        return count > 0 ? findById(id) : null;      
+        return count > 0 ? findById(id) : null;   //must use return to return the newly updated record   
     })
 
 }
