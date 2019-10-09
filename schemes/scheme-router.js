@@ -54,6 +54,7 @@ router.post('/', (req, res) => {
     res.status(201).json(scheme);
   })
   .catch (err => {
+    console.log("create scheme error", err);
     res.status(500).json({ message: 'Failed to create new scheme' });
   });
 });
@@ -104,12 +105,14 @@ router.delete('/:id', (req, res) => {
   Schemes.remove(id)
   .then(deleted => {
     if (deleted) {
+      console.log("deleted", deleted);
       res.json({ removed: deleted });
-    } else {
+    } else {      
       res.status(404).json({ message: 'Could not find scheme with given id' });
     }
   })
   .catch(err => {
+    console.log("delete scheme error", err);
     res.status(500).json({ message: 'Failed to delete scheme' });
   });
 });
